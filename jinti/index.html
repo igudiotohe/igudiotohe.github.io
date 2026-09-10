@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金提莫-角色资料、技能玩法与阵容搭配指南</title>
+<meta name="description" content="金提莫是英雄联盟中提莫的一款经典皮肤，本页整理金提莫的外观特点、技能机制、出装思路、对线打法与阵容搭配建议，帮助玩家快速了解并使用这一角色。">
+<meta name="keywords" content="金提莫,提莫皮肤,提莫出装,提莫玩法,提莫阵容,英雄联盟提莫">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --gold: #c9a227;
+    --gold-light: #f0d97a;
+    --gold-deep: #8a6d0f;
+    --dark: #1b2416;
+    --dark-2: #26331f;
+    --leaf: #4d7c3a;
+    --leaf-light: #7fae5f;
+    --cream: #fbf7e9;
+    --text: #2c3423;
+    --text-soft: #5d6a4e;
+    --line: #e2dcc2;
+    --radius: 12px;
+    --shadow: 0 6px 22px rgba(27, 36, 22, 0.12);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(27, 36, 22, 0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: 66px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold-light);
+    font-weight: 700;
+    font-size: 1.22rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .brand .mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 30%, var(--gold-light), var(--gold-deep));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2a2005;
+    font-size: 1rem;
+    font-weight: 800;
+    box-shadow: 0 0 0 2px rgba(240, 217, 122, 0.35);
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .main-nav a {
+    color: #d8e3c8;
+    font-size: 0.94rem;
+    padding: 8px 13px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .main-nav a:hover {
+    background: rgba(201, 162, 39, 0.2);
+    color: var(--gold-light);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(201, 162, 39, 0.35), transparent 46%),
+      radial-gradient(circle at 12% 88%, rgba(77, 124, 58, 0.55), transparent 52%),
+      linear-gradient(150deg, #1b2416 0%, #2f4224 60%, #3d5529 100%);
+    color: #f4f0dc;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(240, 217, 122, 0.16) 1px, transparent 1px);
+    background-size: 26px 26px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 44px;
+    align-items: center;
+    padding: 68px 0 74px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    border: 1px solid rgba(240, 217, 122, 0.5);
+    border-radius: 999px;
+    padding: 4px 14px;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-size: 2.7rem;
+    line-height: 1.25;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    color: #fffdf3;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero p {
+    font-size: 1.02rem;
+    color: #dbe3c9;
+    max-width: 560px;
+    margin-bottom: 26px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 11px 24px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    color: #35290a;
+    box-shadow: 0 6px 18px rgba(201, 162, 39, 0.4);
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(201, 162, 39, 0.5);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: #e8e2c6;
+    border: 1px solid rgba(232, 226, 198, 0.45);
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateY(-2px);
+  }
+
+  .hero-card {
+    background: rgba(251, 247, 233, 0.07);
+    border: 1px solid rgba(240, 217, 122, 0.28);
+    border-radius: 18px;
+    padding: 26px 24px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  }
+
+  .hero-card h2 {
+    font-size: 1.05rem;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .stat-list {
+    list-style: none;
+    display: grid;
+    gap: 13px;
+  }
+
+  .stat-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 0.93rem;
+    color: #d9e0c7;
+    border-bottom: 1px dashed rgba(240, 217, 122, 0.22);
+    padding-bottom: 9px;
+  }
+
+  .stat-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .stat-list strong {
+    color: #fffdf3;
+    font-weight: 600;
+  }
+
+  /* ---------- Section base ---------- */
+  section {
+    padding: 62px 0;
+  }
+
+  .section-head {
+    margin-bottom: 34px;
+    max-width: 780px;
+  }
+
+  .section-head .eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: var(--leaf);
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .section-head h2 {
+    font-size: 1.85rem;
+    line-height: 1.35;
+    color: var(--dark);
+    letter-spacing: 0.5px;
+  }
+
+  .section-head h2::after {
+    content: "";
+    display: block;
+    width: 58px;
+    height: 4px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--leaf-light));
+    margin-top: 14px;
+  }
+
+  .section-head p {
+    margin-top: 14px;
+    color: var(--text-soft);
+    font-size: 0.98rem;
+  }
+
+  /* ---------- Intro / overview ---------- */
+  .overview {
+    background: #fff;
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .overview-text p {
+    margin-bottom: 16px;
+    color: #3c4632;
+  }
+
+  .highlight-box {
+    background: linear-gradient(160deg, #fdf9ea, #f3eed6);
+    border-left: 5px solid var(--gold);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 20px 22px;
+    margin: 22px 0;
+  }
+
+  .highlight-box h3 {
+    font-size: 1.02rem;
+    color: var(--gold-deep);
+    margin-bottom: 8px;
+  }
+
+  .highlight-box p {
+    font-size: 0.94rem;
+    color: var(--text-soft);
+    margin: 0;
+  }
+
+  .trait-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .trait {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .trait:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+  }
+
+  .trait .num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: Georgia, serif;
+  }
+
+  .trait h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: var(--dark);
+  }
+
+  .trait p {
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    line-height: 1.65;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills {
+    background: linear-gradient(180deg, #f5f2e3, #fbf7e9);
+  }
+
+  .skill-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .skill-item {
+    display: grid;
+    grid-template-columns: 74px 1fr;
+    gap: 18px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .skill-item:hover {
+    border-color: var(--leaf-light);
+    box-shadow: 0 10px 26px rgba(77, 124, 58, 0.18);
+  }
+
+  .skill-key {
+    width: 58px;
+    height: 58px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, var(--dark-2), var(--leaf));
+    color: var(--gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    box-shadow: inset 0 0 0 2px rgba(240, 217, 122, 0.35);
+  }
+
+  .skill-body h3 {
+    font-size: 1.05rem;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .skill-body p {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+  }
+
+  .skill-body .note {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--gold-deep);
+    background: #fbf3d6;
+    border-radius: 6px;
+    padding: 2px 10px;
+  }
+
+  /* ---------- Builds ---------- */
+  .builds {
+    background: #fff;
+  }
+
+  .build-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+
+  .tab-btn {
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: #faf8ef;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .tab-btn.active,
+  .tab-btn:hover {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    color: #35290a;
+    border-color: var(--gold);
+  }
+
+  .tab-panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .tab-panel.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .build-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .build-card {
+    background: #fbf9f0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+
+  .build-card h3 {
+    font-size: 1rem;
+    color: var(--gold-deep);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .build-card ul {
+    list-style: none;
+    display: grid;
+    gap: 9px;
+  }
+
+  .build-card li {
+    font-size: 0.9rem;
+    color: #414b36;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .build-card li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--leaf-light);
+  }
+
+  /* ---------- Lane guide ---------- */
+  .lane {
+    background: linear-gradient(180deg, #f5f2e3, #fbf7e9);
+  }
+
+  .lane-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .lane-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 24px;
+    border-top: 4px solid var(--gold);
+    box-shadow: var(--shadow);
+  }
+
+  .lane-card:nth-child(2) {
+    border-top-color: var(--leaf);
+  }
+
+  .lane-card:nth-child(3) {
+    border-top-color: var(--gold-deep);
+  }
+
+  .lane-card:nth-child(4) {
+    border-top-color: var(--leaf-light);
+  }
+
+  .lane-card h3 {
+    font-size: 1.08rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+  }
+
+  .lane-card p {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+    margin-bottom: 10px;
+  }
+
+  .lane-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ---------- Team comp ---------- */
+  .team {
+    background: #fff;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .team-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    background: linear-gradient(170deg, #ffffff, #faf7ea);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(27, 36, 22, 0.14);
+  }
+
+  .team-card .badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    padding: 3px 11px;
+    border-radius: 999px;
+    background: #eef3e4;
+    color: var(--leaf);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .team-card h3 {
+    font-size: 1.02rem;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+
+  .team-card p {
+    font-size: 0.89rem;
+    color: var(--text-soft);
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq {
+    background: linear-gradient(180deg, #f5f2e3, #fbf7e9);
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 12px;
+    max-width: 900px;
+  }
+
+  .faq-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 17px 20px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--dark);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+
+  .faq-q:hover {
+    background: #fdfbf2;
+  }
+
+  .faq-q .icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #f1ecd6;
+    color: var(--gold-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: transform 0.25s;
+  }
+
+  .faq-item.open .faq-q .icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-a p {
+    padding: 0 20px 18px;
+    font-size: 0.92rem;
+    color: var(--text-soft);
+  }
+
+  /* ---------- Footer ---------- */
+  .site-footer {
+    background: var(--dark);
+    color: #b9c4a8;
+    padding: 46px 0 26px;
+    border-top: 3px solid var(--gold);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 34px;
+    margin-bottom: 32px;
+  }
+
+  .footer-brand {
+    color: var(--gold-light);
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .footer-col p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: #9fae8c;
+  }
+
+  .footer-col h3 {
+    font-size: 0.95rem;
+    color: #e6ecd8;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: grid;
+    gap: 9px;
+  }
+
+  .footer-col ul li a {
+    font-size: 0.88rem;
+    color: #9fae8c;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover {
+    color: var(--gold-light);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 20px;
+    font-size: 0.82rem;
+    color: #7f8d6e;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 34px;
+      padding: 52px 0 58px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+    }
+    .overview-grid,
+    .lane-grid {
+      grid-template-columns: 1fr;
+    }
+    .build-cols,
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .header-inner {
+      height: auto;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 12px 0;
+      gap: 8px;
+    }
+    .main-nav {
+      gap: 2px;
+    }
+    .main-nav a {
+      padding: 6px 10px;
+      font-size: 0.88rem;
+    }
+    .hero h1 {
+      font-size: 1.85rem;
+    }
+    section {
+      padding: 46px 0;
+    }
+    .section-head h2 {
+      font-size: 1.5rem;
+    }
+    .trait-grid,
+    .build-cols,
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    .skill-item {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .skill-key {
+      width: 48px;
+      height: 48px;
+      font-size: 1rem;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <span class="mark">金</span>
+      金提莫 · 角色资料站
+    </div>
+    <nav class="main-nav" aria-label="主导航">
+      <a href="#overview">角色概述</a>
+      <a href="#skills">技能解析</a>
+      <a href="#builds">出装思路</a>
+      <a href="#lane">对线打法</a>
+      <a href="#team">阵容搭配</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero" aria-label="页面简介">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="hero-tag">英雄联盟 · 提莫皮肤与玩法</span>
+        <h1>金提莫：<em>金质外观</em>与蘑菇战术的完整使用手册</h1>
+        <p>金提莫是《英雄联盟》中提莫的一款以金色为主色调的皮肤，外观上把提莫的吹箭、蘑菇和服饰都做了鎏金化处理。本页围绕这款皮肤的外观特点、提莫本身的技能机制、出装方向、对线细节与阵容搭配展开，适合想了解金提莫或准备上手提莫的玩家参考。</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#skills">查看技能解析</a>
+          <a class="btn btn-ghost" href="#builds">浏览出装思路</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h2>快速了解</h2>
+        <ul class="stat-list">
+          <li><span>所属作品</span><strong>英雄联盟</strong></li>
+          <li><span>角色定位</span><strong>远程法师 / 刺客型射手</strong></li>
+          <li><span>常见分路</span><strong>上单、打野、中单</strong></li>
+          <li><span>核心机制</span><strong>隐身、致盲、蘑菇陷阱</strong></li>
+          <li><span>皮肤主题</span><strong>金色外观与特效</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="overview" id="overview">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Overview</span>
+        <h2>金提莫是什么？先弄清楚皮肤与角色本身</h2>
+        <p>很多玩家搜索“金提莫”，既可能是想确认这是一款皮肤，也可能是想找提莫的玩法资料。这里先把两个概念分开说明，再讲它们之间的联系。</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="overview-text">
+          <p>金提莫指的是提莫的一款金色主题皮肤。皮肤改变的是角色的模型、配色和部分技能特效，不会改变提莫的基础技能数值与机制。也就是说，无论使用哪款皮肤，提莫的被动隐身、Q 致盲、W 加速、E 中毒、R 蘑菇陷阱这套技能框架都是一致的。</p>
+          <p>提莫本身是一名约德尔人角色，定位偏向远程消耗与地图控制。他的对线强度来自致盲对普攻型英雄的克制，以及蘑菇在河道、草丛和关键路径上形成的视野与减速威胁。团战中，提莫更依赖蘑菇阵和致盲时机，而不是正面硬拼。</p>
+          <div class="highlight-box">
+            <h3>一句话理解</h3>
+            <p>金提莫是外观，提莫是玩法。选皮肤看喜好，选打法看阵容——两者互不冲突，但决定胜负的始终是技能释放时机与地图理解。</p>
+          </div>
+          <p>如果你是第一次接触提莫，建议先在人机或匹配中熟悉蘑菇的放置位置和致盲的施放距离，再考虑排位使用。提莫的操作门槛不高，但意识门槛不低，尤其是蘑菇的布局需要结合地图节奏来判断。</p>
+        </div>
+
+        <div class="trait-grid">
+          <div class="trait">
+            <div class="num">01</div>
+            <h3>远程消耗</h3>
+            <p>依靠普攻和 E 技能的中毒效果持续压低对手血线，适合拉扯型对线。</p>
+          </div>
+          <div class="trait">
+            <div class="num">02</div>
+            <h3>致盲克制</h3>
+            <p>Q 技能让目标短暂无法普攻，对依赖平 A 输出的英雄有明显压制力。</p>
+          </div>
+          <div class="trait">
+            <div class="num">03</div>
+            <h3>隐身游走</h3>
+            <p>被动在静止一段时间后进入隐身，可用于埋伏、逃生和视野规避。</p>
+          </div>
+          <div class="trait">
+            <div class="num">04</div>
+            <h3>蘑菇控图</h3>
+            <p>R 技能布置的蘑菇提供减速与视野，是提莫参与地图控制的主要手段。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="skills" id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Skills</span>
+        <h2>技能解析：提莫的五个关键能力</h2>
+        <p>以下按技能键位逐一说明效果与实战用途。具体数值会随版本调整，请以游戏内当前版本为准。</p>
+      </div>
+
+      <div class="skill-list">
+        <article class="skill-item">
+          <div class="skill-key">被动</div>
+          <div class="skill-body">
+            <h3>隐形的约德尔人</h3>
+            <p>提莫在短时间内保持静止后进入隐身状态，移动或攻击会解除。这个机制让提莫可以在草丛或线上埋伏，也能在敌人追击时通过停顿脱离视线。</p>
+            <span class="note">实战要点：隐身需要静止触发，逃跑时不要一直跑，找机会停顿一下再走位。</span>
+          </div>
+        </article>
+
+        <article class="skill-item">
+          <div class="skill-key">Q</div>
+          <div class="skill-body">
+            <h3>致盲吹箭</h3>
+            <p>对目标造成伤害并使其短暂无法命中普攻。这是提莫对抗射手、剑姬类普攻英雄的核心手段，也是换血时的先手技能。</p>
+            <span class="note">实战要点：优先交给依赖普攻输出的对手，而不是用来清兵。</span>
+          </div>
+        </article>
+
+        <article class="skill-item">
+          <div class="skill-key">W</div>
+          <div class="skill-body">
+            <h3>小莫快跑</h3>
+            <p>被动提供持续移动速度加成，主动激活后短时间内获得更高移速。用于追击、撤退和躲避技能，是提莫拉扯能力的来源。</p>
+            <span class="note">实战要点：不要在安全时随意交出，留作逃生或追击收尾。</span>
+          </div>
+        </article>
+
+        <article class="skill-item">
+          <div class="skill-key">E</div>
+          <div class="skill-body">
+            <h3>毒性射击</h3>
+            <p>提莫的普攻附带持续毒伤，使他在对拼和消耗中拥有稳定的额外输出。配合攻速装备能明显提升压制力。</p>
+            <span class="note">实战要点：保持普攻频率，毒伤是提莫线上压制的稳定来源。</span>
+          </div>
+        </article>
+
+        <article class="skill-item">
+          <div class="skill-key">R</div>
+          <div class="skill-body">
+            <h3>种蘑菇</h3>
+            <p>在指定位置布置隐形蘑菇，敌人踩中后受到伤害并被减速，同时提供短暂视野。蘑菇是提莫控图、反蹲和团战分割的核心工具。</p>
+            <span class="note">实战要点：优先布置在河道入口、草丛边缘和撤退路径，而不是随意丢在兵线上。</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Builds -->
+  <section class="builds" id="builds">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Builds</span>
+        <h2>出装思路：按对局定位选择方向</h2>
+        <p>提莫的出装并非固定一套，需要根据分路、对手阵容和队伍需求调整。下面按三种常见思路分类说明，具体装备名称请结合当前版本商店内容选择。</p>
+      </div>
+
+      <div class="build-tabs" role="tablist">
+        <button class="tab-btn active" data-tab="tab-ap" role="tab" aria-selected="true">法强消耗流</button>
+        <button class="tab-btn" data-tab="tab-as" role="tab" aria-selected="false">攻速持续输出流</button>
+        <button class="tab-btn" data-tab="tab-tank" role="tab" aria-selected="false">半肉控图流</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-ap">
+        <div class="build-cols">
+          <div class="build-card">
+            <h3>核心方向</h3>
+            <ul>
+              <li>以法术强度提升蘑菇和 Q 技能的伤害</li>
+              <li>兼顾一定的冷却缩减，提高蘑菇布置频率</li>
+              <li>适合中单或需要远程消耗的阵容</li>
+            </ul>
+          </div>
+          <div class="build-card">
+            <h3>适用场景</h3>
+            <ul>
+              <li>对手前排较多，需要持续消耗</li>
+              <li>队伍缺少远程消耗手段</li>
+              <li>己方有稳定开团，提莫负责后续输出</li>
+            </ul>
+          </div>
+          <div class="build-card">
+            <h3>注意点</h3>
+            <ul>
+              <li>身板较脆，站位不能过于靠前</li>
+              <li>蘑菇要提前布置，不能等团战开始才丢</li>
+              <li>面对强突进阵容需要保留 W 逃生</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-as">
+        <div class="build-cols">
+          <div class="build-card">
+            <h3>核心方向</h3>
+            <ul>
+              <li>以攻击速度放大 E 技能毒伤收益</li>
+              <li>配合普攻进行持续压制与推塔</li>
+              <li>适合上单对线压制和分带节奏</li>
+            </ul>
+          </div>
+          <div class="build-card">
+            <h3>适用场景</h3>
+            <ul>
+              <li>对手是近战上单，容易被风筝</li>
+              <li>队伍需要边路带线压力</li>
+              <li>己方有前排承担正面团战</li>
+            </ul>
+          </div>
+          <div class="build-card">
+            <h3>注意点</h3>
+            <ul>
+              <li>攻速流更依赖普攻环境，怕控制链</li>
+              <li>要利用草丛和隐身规避关键技能</li>
+              <li>分带时注意小地图，避免被抓</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-tank">
+        <div class="build-cols">
+          <div class="build-card">
+            <h3>核心方向</h3>
+            <ul>
+              <li>在保证一定输出的前提下提升生存能力</li>
+              <li>更强调蘑菇阵的地图控制作用</li>
+              <li>适合打野或需要承担视野任务的阵容</li>
+            </ul>
+          </div>
+          <div class="build-card">
+            <h3>适用场景</h3>
+            <ul>
+              <li>对手爆发高，纯输出容易瞬间被秒</li>
+              <li>队伍需要有人负责关键区域视野</li>
+              <li>对局节奏偏慢，控图价值更高</li>
+            </ul>
+          </div>
+          <div class="build-card">
+            <h3>注意点</h3>
+            <ul>
+              <li>输出会有所下降，需要队友补足伤害</li>
+              <li>蘑菇位置要围绕地图资源点布置</li>
+              <li>不要因为出肉就放弃致盲的释放时机</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lane -->
+  <section class="lane" id="lane">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Laning</span>
+        <h2>对线与分路：不同位置的打法重点</h2>
+        <p>提莫可以出现在多个位置，但每个位置的职责不同。以下按常见分路说明思路，具体选择还需结合队伍阵容。</p>
+      </div>
+
+      <div class="lane-grid">
+        <article class="lane-card">
+          <h3>上单提莫</h3>
+          <p>上单是提莫最常见的分路之一。利用远程普攻和 E 技能毒伤压制近战对手，Q 技能留给对方的普攻输出或突进技能。注意控线，避免兵线过深被抓。</p>
+          <p>六级后开始在上路河道和三角草丛布置蘑菇，既能防抓，也能为队友提供视野。如果对线打不开局面，可以通过分带牵制对手。</p>
+        </article>
+
+        <article class="lane-card">
+          <h3>打野提莫</h3>
+          <p>打野提莫的清野速度中等，优势在于蘑菇可以封锁河道入口和敌方野区路径，形成信息优势。前期以稳健发育为主，避免与强势打野正面碰撞。</p>
+          <p>利用隐身被动在草丛中埋伏，配合线上队友发起突袭。蘑菇优先布置在敌方可能的支援路线上，延缓对手的支援速度。</p>
+        </article>
+
+        <article class="lane-card">
+          <h3>中单提莫</h3>
+          <p>中单提莫更偏向消耗与支援。面对法师对手时，注意走位躲避技能，用普攻和 Q 进行换血。中路线短，蘑菇可以布置在两侧河道草丛。</p>
+          <p>中单提莫的游走能力一般，但可以通过蘑菇为边路提供预警。团战中站后排输出，优先致盲对方的核心普攻英雄。</p>
+        </article>
+
+        <article class="lane-card">
+          <h3>辅助提莫</h3>
+          <p>辅助提莫属于偏娱乐或特定阵容的选择，主要价值在于蘑菇提供的视野和减速。对线期用普攻和 Q 骚扰对手，但要注意自身血量。</p>
+          <p>辅助提莫需要更早购买视野相关装备，蘑菇布置要覆盖下路河道和龙坑周边。团战中以保护后排和致盲突进英雄为主。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team" id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Teamfight</span>
+        <h2>阵容搭配：提莫适合什么样的队友</h2>
+        <p>提莫的定位决定了他更适合有前排、有控制的阵容。以下是几种常见的搭配思路，供组队时参考。</p>
+      </div>
+
+      <div class="team-grid">
+        <article class="team-card">
+          <span class="badge">前排搭配</span>
+          <h3>有坦克的阵容</h3>
+          <p>己方有稳定前排时，提莫可以在后排安全输出，蘑菇阵也能为前排提供撤退掩护。坦克开团后，提莫跟进致盲对方核心输出。</p>
+        </article>
+
+        <article class="team-card">
+          <span class="badge">控制搭配</span>
+          <h3>有硬控的阵容</h3>
+          <p>队友的控制技能可以帮助提莫命中 Q 和布置蘑菇。控制链衔接得好，提莫的持续输出能打出不错的效果。</p>
+        </article>
+
+        <article class="team-card">
+          <span class="badge">视野搭配</span>
+          <h3>需要控图的阵容</h3>
+          <p>当队伍重视地图资源争夺时，提莫的蘑菇可以作为额外的视野补充。配合打野控龙、控峡谷先锋，能提升整体节奏。</p>
+        </article>
+
+        <article class="team-card">
+          <span class="badge">慎选场景</span>
+          <h3>对手多突进</h3>
+          <p>如果对方有多个强突进英雄，提莫的生存环境会比较差。此时需要更早出防御装，并依靠 W 和闪现拉开距离。</p>
+        </article>
+
+        <article class="team-card">
+          <span class="badge">慎选场景</span>
+          <h3>队伍缺前排</h3>
+          <p>如果己方没有坦克，提莫很难在团战中找到输出位置。这种情况下建议选择更稳健的分路或调整英雄选择。</p>
+        </article>
+
+        <article class="team-card">
+          <span class="badge">配合思路</span>
+          <h3>分带与牵制</h3>
+          <p>提莫的分带能力不错，可以在边路牵制对手，为队友创造以多打少的机会。分带时要保持蘑菇覆盖撤退路线。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>常见问题解答</h2>
+        <p>整理了一些玩家在了解金提莫和提莫玩法时经常提出的问题。</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            金提莫是皮肤还是英雄？
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>金提莫是提莫的一款皮肤，属于外观内容。英雄本身叫提莫，皮肤只改变模型、配色和部分特效，不影响技能数值和机制。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            提莫适合新手使用吗？
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>提莫的操作难度不高，技能释放比较直观，适合新手熟悉远程英雄的走位和消耗节奏。但提莫对地图意识有一定要求，尤其是蘑菇的布置位置，需要一定对局经验才能用好。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            提莫的蘑菇应该放在哪里？
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>优先放在河道入口、草丛边缘、撤退路径和地图资源点附近。这些位置能提供视野预警，也能在敌人经过时造成减速。不建议把蘑菇随意丢在兵线上，容易被小兵触发浪费。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            提莫对线怕哪些英雄？
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>提莫比较怕有强突进和远程消耗能力的英雄。面对这类对手时，需要更谨慎地控线，保留 W 技能用于逃生，并尽早布置蘑菇防止被绕后。具体对局还需结合双方阵容判断。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            提莫在团战中应该做什么？
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>团战中提莫的主要任务是保持安全距离输出，把 Q 致盲交给对方依赖普攻的核心英雄，并利用蘑菇分割战场或封锁撤退路线。不要贸然冲到前排，提莫的身板较脆。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            金提莫皮肤会影响技能效果吗？
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>不会。皮肤只改变视觉效果，技能的范围、伤害、冷却等数值都与原版提莫一致。选择皮肤主要看个人对外观的偏好。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">金提莫 · 角色资料站</div>
+        <p>本页围绕金提莫皮肤与提莫玩法整理资料，内容涵盖技能解析、出装思路、对线打法和阵容搭配，供玩家参考交流。游戏版本会持续更新，具体数值请以游戏内为准。</p>
+      </div>
+      <div class="footer-col">
+        <h3>内容导航</h3>
+        <ul>
+          <li><a href="#overview">角色概述</a></li>
+          <li><a href="#skills">技能解析</a></li>
+          <li><a href="#builds">出装思路</a></li>
+          <li><a href="#lane">对线打法</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>相关主题</h3>
+        <ul>
+          <li><a href="#team">阵容搭配</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#overview">皮肤与角色区别</a></li>
+          <li><a href="#skills">蘑菇布置技巧</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>本站为玩家资料整理页面，与游戏官方无隶属关系。</span>
+      <span>内容仅供参考，请以游戏内实际版本为准。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 出装标签切换
+  (function () {
+    var tabBtns = document.querySelectorAll('.tab-btn');
+    var panels = document.querySelectorAll('.tab-panel');
+
+    tabBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = btn.getAttribute('data-tab');
+
+        tabBtns.forEach(function (b) {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(function (p) {
+          p.classList.remove('active');
+        });
+
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        var panel = document.getElementById(target);
+        if (panel) {
+          panel.classList.add('active');
+        }
+      });
+    });
+  })();
+
+  // FAQ 折叠
+  (function () {
+    var items = document.querySelectorAll('.faq-item');
+
+    items.forEach(function (item) {
+      var q = item.querySelector('.faq-q');
+      var a = item.querySelector('.faq-a');
+
+      q.addEventListener('click', function () {
+        var isOpen = item.classList.contains('open');
+
+        items.forEach(function (other) {
+          other.classList.remove('open');
+          var otherA = other.querySelector('.faq-a');
+          if (otherA) {
+            otherA.style.maxHeight = null;
+          }
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          a.style.maxHeight = a.scrollHeight + 'px';
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+  </html>
